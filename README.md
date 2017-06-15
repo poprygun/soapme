@@ -13,7 +13,7 @@ Tests in `io.pivotal.microsamples.soapme.GetWeatherSoapCallTests
 
 ## CXF configuration 
 
-See [cxf configuration](poprygun/soapme/blob/master/src/main/resources/application.properties) for examples of extra classes, and logging configuration
+See [cxf configuration](src/main/resources/cxf.xml) for examples of extra classes, and logging configuration
 
 
 ## Spring WS
