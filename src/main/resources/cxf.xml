@@ -1,0 +1,34 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
+
+    <bean id="jaxb" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider">
+        <property name="singleJaxbContext" value="true"/>
+        <property name="marshallerProperties" ref="propertiesMap"/>
+        <property name="extraClass">
+            <list>
+                <value>io.pivotal.microsamples.soapme.extra.ExtraSoapObject</value>
+            </list>
+        </property>
+    </bean>
+
+    <util:map id="propertiesMap">
+        <entry key="jaxb.formatted.output">
+            <value type="java.lang.Boolean">true</value>
+        </entry>
+    </util:map>
+
+    <bean id="loggingFeature" class="org.apache.cxf.feature.LoggingFeature">
+        <property name="prettyLogging" value="true" />
+    </bean>
+
+    <cxf:bus>
+        <cxf:features>
+            <ref bean="loggingFeature" />
+        </cxf:features>
+    </cxf:bus>
+</beans>
